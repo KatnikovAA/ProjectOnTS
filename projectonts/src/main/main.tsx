@@ -1,7 +1,7 @@
 import React from 'react'
 import './main.css';
 import { useEffect,useState,useRef } from 'react';
-import { RequiredField } from '../requiredField/requiredField.tsx';
+import { RequiredField } from '../requiredField/requiredField';
 interface Props {
     text: string;
   }
@@ -9,23 +9,19 @@ interface Props {
 export function Main (): ReturnType<React.FC> {
 
     const [valueLengthField,setValueLengthField] = useState<number>(0)
-    const inputText = useRef<HTMLInputElement | undefined> (null!)
 
-    const lengthValueFild = (e:any) => {
+
+    const lengthValueFild = (e:React.ChangeEvent<HTMLInputElement>):void => {
         setValueLengthField(e.target.value.length)
         
-       /* 
-        if(e.target.value.length !== 0){
-            inputText.current.style.backgroundColor = "red";
-        } else {    
-            inputText.current.style.backgroundColor = "yellow";
-        } 
-        */
     }
-
+    //classNameText = {valueLengthField > 0 ? 'requiredFields' : 'requiredFieldsYellow'}
     return(
         <div>
-            <RequiredField placeholderText={"Имя"} classNameText = {valueLengthField > 0 ? 'requiredFields' : 'requiredFieldsYellow'} lengthValueFild ={lengthValueFild}></RequiredField>
+    
+            <RequiredField placeholderText={"Имя"}  lengthValueFild ={lengthValueFild}></RequiredField>
+            <RequiredField placeholderText={"Фамилия"}  lengthValueFild ={lengthValueFild}></RequiredField>
+
         </div>
     )
 }
