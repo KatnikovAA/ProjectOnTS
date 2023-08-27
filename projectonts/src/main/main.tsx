@@ -1,33 +1,32 @@
 import React from 'react'
 import './main.css';
 import { useEffect,useState,useRef } from 'react';
-
+import { RequiredField } from '../requiredField/requiredField.tsx';
 interface Props {
     text: string;
   }
 
-export function Main ({text}): ReturnType<React.FC> {
+export function Main (): ReturnType<React.FC> {
 
-    const [valueFields,setValueFields] = useState<number|string>()
+    const [valueLengthField,setValueLengthField] = useState<number>(0)
+    const inputText = useRef<HTMLInputElement | undefined> (null!)
 
-    const inputText = useRef<HTMLInputElement | undefined >()
-
-    const valueLength = (e:any) => {
-        setValueFields(e.target.value)
-
+    const lengthValueFild = (e:any) => {
+        setValueLengthField(e.target.value.length)
+        
+       /* 
         if(e.target.value.length !== 0){
             inputText.current.style.backgroundColor = "red";
         } else {    
             inputText.current.style.backgroundColor = "yellow";
         } 
+        */
     }
 
     return(
         <div>
-           
-                <input type="text" required placeholder={text} className='requiredFields' onChange={valueLength} ref={inputText}/>
-                <div>{valueFields}</div>
-
+            <RequiredField placeholderText={"Имя"} classNameText = {valueLengthField > 0 ? 'requiredFields' : 'requiredFieldsYellow'} lengthValueFild ={lengthValueFild}></RequiredField>
         </div>
     )
 }
+

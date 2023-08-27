@@ -1,0 +1,7 @@
+.requiredFields {
+    background-color: rgb(255, 255, 255);/* Цвет фона */
+   }
+
+.requiredFieldsYellow{
+    background-color: yellow /* Цвет текста */
+}
